@@ -22,7 +22,7 @@
 
             <div id="statusMessage" class="status-message" role="alert"></div>
 
-            <form id="loginForm" class="form-group" id="loginFormStatic">
+            <form id="loginForm" class="form-group">
                 <div class="input-group">
                     <i class="fas fa-envelope"></i>
                     <input type="email" id="email" name="email" placeholder="Email" required>
@@ -95,62 +95,58 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
     <script src="dados.js"></script>
+    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            // Renderizar jogos iniciais
             const container = document.getElementById('homeGames');
-            if (!container || !window.jogosSimulados) return;
-
-            container.innerHTML = jogosSimulados.slice(0, 4).map(jogo => `
-                <div class="game-card">
-                    <div class="card-image" style="background-image: url('${jogo.imagem}');">
-                        ${!jogo.imagem ? jogo.icon : ''}
+            if (container && window.jogosSimulados) {
+                container.innerHTML = jogosSimulados.slice(0, 4).map(jogo => `
+                    <div class="game-card">
+                        <div class="card-image" style="background-image: url('${jogo.imagem}');">
+                            ${!jogo.imagem ? jogo.icon : ''}
+                        </div>
+                        <div class="card-content">
+                            <h3 class="card-title">${jogo.nome}</h3>
+                            <p class="card-subtitle">${jogo.genero} • ${jogo.plataforma}</p>
+                            <p class="card-description">${jogo.descricao}</p>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <h3 class="card-title">${jogo.nome}</h3>
-                        <p class="card-subtitle">${jogo.genero} • ${jogo.plataforma}</p>
-                        <p class="card-description">${jogo.descricao}</p>
-                    </div>
-                </div>
-            `).join('');
-        });
-    </script>
-    <script src="login_oauth.js"></script>
-    <script>
-        (function () {
-            const params = new URLSearchParams(window.location.search);
-            const status = params.get('status');
-            const message = params.get('message');
-            const box = document.getElementById('statusMessage');
-            if (box && status && message) {
-                box.textContent = decodeURIComponent(message);
-                box.className = 'status-message show ' + (status === 'success' ? 'success' : 'error');
+                `).join('');
             }
-        })();
+
+            // Lógica de Login Estático
+            const form = document.getElementById('loginForm');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const email = document.getElementById('email').value;
+                    const statusBox = document.getElementById('statusMessage');
+                    
+                    if (statusBox) {
+                        statusBox.textContent = 'Entrando...';
+                        statusBox.className = 'status-message show success';
+                    }
+
+                    // Simular salvar usuário no localStorage
+                    localStorage.setItem('usuarioLogado', JSON.stringify({
+                        id: 1,
+                        nome: 'Jogador Teste',
+                        nickname: 'JogadorTeste',
+                        email: email,
+                        rank: 'Intermediário',
+                        plataforma: 'PC',
+                        foto: 'avatar-default.svg',
+                        nivel: 5
+                    }));
+
+                    setTimeout(() => {
+                        window.location.href = 'dashboard.html';
+                    }, 800);
+                });
+            }
+        });
     </script>
 </body>
 </html>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('loginFormStatic');
-    if (form) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const email = document.getElementById('email').value;
-            // Simular salvar usuário na sessão (localStorage)
-            localStorage.setItem('usuarioLogado', JSON.stringify({
-                id: 1,
-                nome: 'Jogador Teste',
-                nickname: 'JogadorTeste',
-                email: email,
-                rank: 'Intermediário',
-                plataforma: 'PC',
-                foto: 'images/avatar-default.svg',
-                nivel: 5
-            }));
-            window.location.href = 'dashboard.html';
-        });
-    }
-});
-</script>

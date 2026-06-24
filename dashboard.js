@@ -300,7 +300,7 @@ function adicionarJogoFavorito(jogoId) {
 
 // Ver perfil do jogador
 function verPerfil(jogadorId) {
-    window.location.href = `perfil.php?id=${jogadorId}`;
+    window.location.href = `perfil.html?jogador=${jogadorId}`;
 }
 
 // Inicializar ao carregar a página
