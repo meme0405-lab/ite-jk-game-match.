@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Game Match - Jogos Favoritos</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container-main">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">
+                    <i class="fas fa-gamepad"></i>
+                    <span>JK Match</span>
+                </div>
+                <button class="btn-sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="jogadores.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Jogadores</span>
+                </a>
+                <a href="matches.html" class="nav-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Meus Matches</span>
+                </a>
+                <a href="jogos_favoritos.html" class="nav-item active">
+                    <i class="fas fa-star"></i>
+                    <span>Jogos Favoritos</span>
+                </a>
+                <a href="perfil.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Meu Perfil</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </a>
+                <a href="index.html" class="nav-item logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Navbar -->
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <h2 class="page-title">Jogos Favoritos</h2>
+                </div>
+                <div class="navbar-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchGames" placeholder="Buscar jogos...">
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Filters -->
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label for="filterGenero">Filtrar por Gênero:</label>
+                    <select id="filterGenero">
+                        <option value="">Todos os Gêneros</option>
+                        <option value="FPS">FPS</option>
+                        <option value="MOBA">MOBA</option>
+                        <option value="RPG">RPG</option>
+                        <option value="Sandbox">Sandbox</option>
+                        <option value="Battle Royale">Battle Royale</option>
+                        <option value="Racing">Racing</option>
+                        <option value="Card Game">Card Game</option>
+                        <option value="MMORPG">MMORPG</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterPlataforma">Filtrar por Plataforma:</label>
+                    <select id="filterPlataforma">
+                        <option value="">Todas as Plataformas</option>
+                        <option value="PC">PC</option>
+                        <option value="PlayStation">PlayStation</option>
+                        <option value="Xbox">Xbox</option>
+                        <option value="Nintendo">Nintendo</option>
+                        <option value="Mobile">Mobile</option>
+                    </select>
+                </div>
+
+                <button id="clearFilters" class="btn-filter-clear">Limpar Filtros</button>
+            </div>
+
+            <div id="favoritesAlert" class="empty-state" style="display:none; margin-bottom: 20px;">
+                <p style="margin: 0; font-weight: 600;">Você precisa entrar para gerenciar seus jogos favoritos.</p>
+                <a href="index.html" class="btn-neon" style="margin-top: 10px; display: inline-block;">Entrar</a>
+            </div>
+
+            <!-- Tabs -->
+            <div class="games-tabs">
+                <button class="tab-btn active" data-tab="meus">
+                    <i class="fas fa-star"></i>
+                    <span>Meus Jogos</span>
+                    <span class="count" id="countMeus">0</span>
+                </button>
+                <button class="tab-btn" data-tab="disponíveis">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Explorar</span>
+                </button>
+            </div>
+
+            <!-- Games Content -->
+            <div class="games-content">
+                <!-- My Games Tab -->
+                <div class="tab-content active" id="tab-meus">
+                    <div class="games-list" id="myGames">
+                        <!-- Carregado dinamicamente -->
+                    </div>
+                    <div class="empty-state" id="emptyMyGames" style="display: none;">
+                        <i class="fas fa-star"></i>
+                        <h3>Você não adicionou jogos favoritos ainda</h3>
+                        <p>Explore e adicione seus jogos favoritos!</p>
+                        <button class="btn-neon tab-trigger" data-tab="disponíveis">
+                            Explorar Jogos
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Explore Tab -->
+                <div class="tab-content" id="tab-disponíveis">
+                    <div class="games-list" id="availableGames">
+                        <!-- Carregado dinamicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- Carregado dinamicamente -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Game Detail Modal -->
+    <div class="modal" id="gameModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <div class="game-detail" id="gameDetail">
+                    <!-- Carregado dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dados.js"></script>
+    <script src="session_user.js.php"></script>
+    <script src="js/script.js"></script>
+    <script src="js/games.js"></script>
+</body>
+</html>

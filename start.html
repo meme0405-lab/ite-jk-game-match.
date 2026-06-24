@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Início - JK Game Match</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 100%);
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        h1 {
+            font-size: 48px;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        h1 i {
+            font-size: 50px;
+        }
+        
+        .tagline {
+            color: #888;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .step {
+            background: rgba(0, 212, 255, 0.05);
+            border: 2px solid #00d4ff;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .step:hover {
+            background: rgba(0, 212, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #00d4ff;
+            color: #000;
+            border-radius: 50%;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+        
+        .step-title {
+            font-size: 20px;
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+        
+        .step-desc {
+            color: #ccc;
+            margin-bottom: 15px;
+        }
+        
+        .step-link {
+            display: inline-block;
+            background: #00d4ff;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .step-link:hover {
+            background: #00a8cc;
+            transform: translateY(-2px);
+        }
+        
+        .tools-section {
+            background: rgba(0, 212, 255, 0.05);
+            border: 2px solid #00d4ff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .tools-title {
+            color: #00d4ff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .tool-link {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid #00d4ff;
+            padding: 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #00d4ff;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .tool-link:hover {
+            background: rgba(0, 212, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 12px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: #00d4ff;
+            color: #000;
+            padding: 15px 40px;
+            font-size: 18px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            background: #00a8cc;
+            transform: translateY(-2px);
+        }
+        
+        .info-box {
+            background: rgba(68, 255, 68, 0.1);
+            border-left: 4px solid #44ff44;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>
+                <i class="fas fa-gamepad"></i>
+                JK Game Match
+            </h1>
+            <p class="tagline">Guia de Início Rápido</p>
+        </header>
+        
+        <div class="info-box">
+            <strong>ℹ️ Bem-vindo!</strong> Este guia irá ajudá-lo a começar com a plataforma JK Game Match em poucos minutos.
+        </div>
+        
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-title">Setup do Banco</div>
+                <p class="step-desc">Crie o banco de dados e as tabelas necessárias</p>
+                <a href="setup_banco.php" class="step-link">
+                    <i class="fas fa-database"></i> Setup Banco
+                </a>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-title">Criar Usuário</div>
+                <p class="step-desc">Crie sua primeira conta de gamer</p>
+                <a href="criar_usuario.php" class="step-link">
+                    <i class="fas fa-user-plus"></i> Criar Usuário
+                </a>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-title">Fazer Login</div>
+                <p class="step-desc">Entre com suas credenciais</p>
+                <a href="index.html" class="step-link">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-title">Explorar</div>
+                <p class="step-desc">Encontre jogadores e crie matches</p>
+                <a href="dashboard.html" class="step-link">
+                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+            </div>
+        </div>
+        
+        <div class="tools-section">
+            <h2 class="tools-title">
+                <i class="fas fa-tools"></i>
+                Ferramentas de Desenvolvimento
+            </h2>
+            <div class="tools-grid">
+                <a href="teste_banco.php" class="tool-link">
+                    <i class="fas fa-flask"></i><br>Testar Conexão
+                </a>
+                <a href="db_debug.php" class="tool-link">
+                    <i class="fas fa-bug"></i><br>Debug BD
+                </a>
+                <a href="status.php" class="tool-link">
+                    <i class="fas fa-heartbeat"></i><br>Status Sistema
+                </a>
+                <a href="welcome.php" class="tool-link">
+                    <i class="fas fa-home"></i><br>Página Inicial
+                </a>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <h2>Pronto para começar?</h2>
+            <p style="margin: 15px 0; color: #ccc;">
+                Siga os passos acima ou comece agora criando sua primeira conta!
+            </p>
+            <a href="setup_banco.php" class="cta-button">
+                🚀 Começar Setup
+            </a>
+        </div>
+    </div>
+</body>
+</html>

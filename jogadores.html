@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Game Match - Jogadores</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container-main">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">
+                    <i class="fas fa-gamepad"></i>
+                    <span>JK Match</span>
+                </div>
+                <button class="btn-sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="jogadores.html" class="nav-item active">
+                    <i class="fas fa-users"></i>
+                    <span>Jogadores</span>
+                </a>
+                <a href="matches.html" class="nav-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Meus Matches</span>
+                </a>
+                <a href="jogos_favoritos.html" class="nav-item">
+                    <i class="fas fa-star"></i>
+                    <span>Jogos Favoritos</span>
+                </a>
+                <a href="perfil.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Meu Perfil</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </a>
+                <a href="index.html" class="nav-item logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Navbar -->
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <h2 class="page-title">Encontrar Jogadores</h2>
+                </div>
+                <div class="navbar-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchPlayers" placeholder="Buscar jogadores...">
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Filters -->
+            <div class="filters-section">
+                <div class="filter-group">
+                    <label for="filterJogo">Filtrar por Jogo:</label>
+                    <select id="filterJogo">
+                        <option value="">Todos os Jogos</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterRank">Filtrar por Rank:</label>
+                    <select id="filterRank">
+                        <option value="">Todos os Ranks</option>
+                        <option value="Iniciante">Iniciante</option>
+                        <option value="Casual">Casual</option>
+                        <option value="Intermediario">Intermediário</option>
+                        <option value="Avancado">Avançado</option>
+                        <option value="Pro">Profissional</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <label for="filterPlataforma">Filtrar por Plataforma:</label>
+                    <select id="filterPlataforma">
+                        <option value="">Todas as Plataformas</option>
+                        <option value="PC">PC</option>
+                        <option value="PlayStation">PlayStation</option>
+                        <option value="Xbox">Xbox</option>
+                        <option value="Nintendo">Nintendo</option>
+                        <option value="Mobile">Mobile</option>
+                    </select>
+                </div>
+
+                <button id="clearFilters" class="btn-filter-clear">Limpar Filtros</button>
+            </div>
+
+            <!-- Players Grid -->
+            <div class="players-section">
+                <div class="sort-options">
+                    <span>Ordenar por:</span>
+                    <button class="sort-btn active" data-sort="recente">Recente</button>
+                    <button class="sort-btn" data-sort="compatibilidade">Compatibilidade</button>
+                    <button class="sort-btn" data-sort="online">Online Agora</button>
+                </div>
+
+                <div class="players-grid large" id="playersGrid">
+                    <!-- Carregado dinamicamente -->
+                </div>
+
+                <div class="no-results" id="noResults" style="display: none;">
+                    <i class="fas fa-search"></i>
+                    <h3>Nenhum jogador encontrado</h3>
+                    <p>Tente ajustar seus filtros</p>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="pagination">
+                    <!-- Carregado dinamicamente -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Player Detail Modal -->
+    <div class="modal" id="playerModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-body">
+                <div class="player-detail" id="playerDetail">
+                    <!-- Carregado dinamicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dados.js"></script>
+    <script src="session_user.js.php"></script>
+    <script src="js/script.js"></script>
+    <script src="js/players.js"></script>
+</body>
+</html>

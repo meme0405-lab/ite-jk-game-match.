@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code - JK Game Match</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .card {
+            background: #1f1f1f;
+            border: 1px solid #00d4ff;
+            border-radius: 12px;
+            padding: 24px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            margin: 0 0 16px;
+            color: #00d4ff;
+        }
+        p {
+            margin: 0 0 20px;
+            line-height: 1.6;
+        }
+        #qrcode {
+            display: inline-block;
+            padding: 16px;
+            background: #0a0a0a;
+            border-radius: 12px;
+        }
+        a {
+            color: #00d4ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>QR Code - JK Game Match</h1>
+        <p>Use o QR code abaixo para abrir o setup localmente:</p>
+        <div id="qrcode"></div>
+        <p><a id="link-url" href="#" target="_blank"></a></p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        const basePath = window.location.pathname.replace(/\/qr\.html$/, '');
+        const url = `${window.location.origin}${basePath}/setup_banco.php`;
+        const linkUrl = document.getElementById('link-url');
+        linkUrl.textContent = url;
+        linkUrl.href = url;
+
+        new QRCode(document.getElementById('qrcode'), {
+            text: url,
+            width: 240,
+            height: 240,
+            colorDark: '#00d4ff',
+            colorLight: '#111',
+            correctLevel: QRCode.CorrectLevel.H
+        });
+    </script>
+</body>
+</html>

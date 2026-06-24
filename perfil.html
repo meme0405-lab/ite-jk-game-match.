@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Game Match - Meu Perfil</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container-main">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">
+                    <i class="fas fa-gamepad"></i>
+                    <span>JK Match</span>
+                </div>
+                <button class="btn-sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="jogadores.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Jogadores</span>
+                </a>
+                <a href="matches.html" class="nav-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Meus Matches</span>
+                </a>
+                <a href="jogos_favoritos.html" class="nav-item">
+                    <i class="fas fa-star"></i>
+                    <span>Jogos Favoritos</span>
+                </a>
+                <a href="perfil.html" class="nav-item active">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Meu Perfil</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </a>
+                <a href="index.html" class="nav-item logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Navbar -->
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <h2 class="page-title">Meu Perfil</h2>
+                </div>
+            </nav>
+
+            <div class="profile-content">
+                <!-- Profile Header -->
+                <div class="profile-header">
+                    <div class="profile-banner"></div>
+                    <div class="profile-info-main">
+                        <div class="profile-avatar">
+                            <img src="images/avatar-default.svg" id="profileAvatar" alt="Avatar" onerror="this.onerror=null;this.src='images/avatar-default.svg'">
+                            <label class="avatar-upload" for="uploadAvatar">
+                                <i class="fas fa-camera"></i>
+                            </label>
+                            <input type="file" id="uploadAvatar" accept="image/*" hidden>
+                        </div>
+                        <div class="profile-basic">
+                            <h1 id="profileName">Usuário</h1>
+                            <p class="profile-nickname" id="profileNickname"></p>
+                            <div class="profile-badges">
+                                <span class="badge-rank" id="profileRank">Iniciante</span>
+                                <span class="badge-platform" id="profilePlatform">PC</span>
+                            </div>
+                        </div>
+                        <button class="btn-edit-profile" id="editProfileBtn">
+                            <i class="fas fa-edit"></i> Editar Perfil
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Profile Stats -->
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="stat-value">
+                            <p class="value" id="statMatches">0</p>
+                            <p class="label">Matches</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="stat-value">
+                            <p class="value" id="statGames">0</p>
+                            <p class="label">Jogos Salvos</p>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-value">
+                            <p class="value" id="statLevel">1</p>
+                            <p class="label">Nível</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="profile-tabs">
+                    <button class="tab-btn active" data-tab="sobre">
+                        <i class="fas fa-user"></i> Sobre
+                    </button>
+                    <button class="tab-btn" data-tab="jogos">
+                        <i class="fas fa-star"></i> Jogos Favoritos
+                    </button>
+                    <button class="tab-btn" data-tab="config">
+                        <i class="fas fa-cog"></i> Configurações
+                    </button>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="profile-tab-content">
+                    <!-- About Tab -->
+                    <div class="tab-content active" id="tab-sobre">
+                        <div class="card-profile">
+                            <h3>Sobre Você</h3>
+                            <div class="about-info">
+                                <div class="info-item">
+                                    <label>Bio:</label>
+                                    <p id="profileBio">Nenhuma bio adicionada</p>
+                                </div>
+                                <div class="info-item">
+                                    <label>Email:</label>
+                                    <p id="profileEmail"></p>
+                                </div>
+                                <div class="info-item">
+                                    <label>Membro desde:</label>
+                                    <p id="profileSince">--/--/----</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Games Tab -->
+                    <div class="tab-content" id="tab-jogos">
+                        <div class="card-profile">
+                            <h3>Seus Jogos Favoritos</h3>
+                            <div class="games-grid" id="favoriteGames">
+                                <!-- Carregado dinamicamente -->
+                            </div>
+                            <div class="empty-state" id="emptyGames" style="display: none;">
+                                <i class="fas fa-gamepad"></i>
+                                <p>Você ainda não adicionou jogos favoritos</p>
+                                <a href="jogos_favoritos.html" class="btn-neon">Adicionar Jogos</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div class="tab-content" id="tab-config">
+                        <div class="card-profile">
+                            <h3>Configurações</h3>
+                            <div class="settings-group">
+                                <label class="setting-item">
+                                    <div class="setting-info">
+                                        <p class="setting-label">Notificações de Matches</p>
+                                        <p class="setting-desc">Receba alertas quando houver um novo match</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked id="notifMatches">
+                                        <span class="slider"></span>
+                                    </label>
+                                </label>
+
+                                <label class="setting-item">
+                                    <div class="setting-info">
+                                        <p class="setting-label">Perfil Visível</p>
+                                        <p class="setting-desc">Deixe seu perfil visível para outros jogadores</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked id="visibleProfile">
+                                        <span class="slider"></span>
+                                    </label>
+                                </label>
+
+                                <label class="setting-item">
+                                    <div class="setting-info">
+                                        <p class="setting-label">Modo Escuro</p>
+                                        <p class="setting-desc">Ativar o tema escuro (já ativado por padrão)</p>
+                                    </div>
+                                    <label class="switch">
+                                        <input type="checkbox" checked id="darkMode">
+                                        <span class="slider"></span>
+                                    </label>
+                                </label>
+                            </div>
+
+                            <div class="danger-zone">
+                                <h4>Zona de Perigo</h4>
+                                <button class="btn-danger" id="deleteAccountBtn">
+                                    <i class="fas fa-trash"></i> Deletar Conta
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div class="modal" id="editProfileModal">
+        <div class="modal-content">
+            <button class="close-modal">&times;</button>
+            <div class="modal-header">
+                <h2>Editar Perfil</h2>
+            </div>
+            <div class="modal-body">
+                <form id="editProfileForm" class="form-group">
+                    <div class="input-group">
+                        <label>Nome</label>
+                        <input type="text" id="editName" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Nickname</label>
+                        <input type="text" id="editNickname" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Rank</label>
+                        <select id="editRank">
+                            <option value="Iniciante">Iniciante</option>
+                            <option value="Casual">Casual</option>
+                            <option value="Intermediario">Intermediário</option>
+                            <option value="Avancado">Avançado</option>
+                            <option value="Pro">Profissional</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Plataforma</label>
+                        <select id="editPlataforma">
+                            <option value="PC">PC</option>
+                            <option value="PlayStation">PlayStation</option>
+                            <option value="Xbox">Xbox</option>
+                            <option value="Nintendo">Nintendo</option>
+                            <option value="Mobile">Mobile</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Bio</label>
+                        <textarea id="editBio" rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-neon">
+                        <i class="fas fa-save"></i> Salvar Alterações
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/dados.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>
