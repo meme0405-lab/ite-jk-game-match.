@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Game Match - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container-main">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo-small">
+                    <i class="fas fa-gamepad"></i>
+                    <span>JK Match</span>
+                </div>
+                <button class="btn-sidebar-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="dashboard.html" class="nav-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="jogadores.html" class="nav-item">
+                    <i class="fas fa-users"></i>
+                    <span>Jogadores</span>
+                </a>
+                <a href="matches.html" class="nav-item">
+                    <i class="fas fa-heart"></i>
+                    <span>Meus Matches</span>
+                    <span class="badge" id="badgeMatches">0</span>
+                </a>
+                <a href="jogos_favoritos.html" class="nav-item">
+                    <i class="fas fa-star"></i>
+                    <span>Jogos Favoritos</span>
+                </a>
+                <a href="perfil.html" class="nav-item">
+                    <i class="fas fa-user-circle"></i>
+                    <span>Meu Perfil</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Configurações</span>
+                </a>
+                <a href="index.html" class="nav-item logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Navbar -->
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <h2 class="page-title">Dashboard</h2>
+                </div>
+                <div class="navbar-right">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchJogos" placeholder="Buscar jogadores ou jogos...">
+                    </div>
+                    <div class="navbar-icons">
+                        <button class="icon-btn notification-btn" id="notificationBtn">
+                            <i class="fas fa-bell"></i>
+                            <span class="notification-dot" id="notificationDot"></span>
+                        </button>
+                        <div class="user-profile-mini">
+                            <img src="images/avatar-default.svg" alt="Perfil" id="userAvatarMini">
+                            <div class="user-info-mini">
+                                <span id="userNameMini">Usuário</span>
+                                <small id="userNicknameMini"></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Dashboard Content -->
+            <div class="dashboard-content">
+                <!-- Welcome Section -->
+                <section class="welcome-section">
+                    <div class="welcome-card">
+                        <div class="welcome-text">
+                            <h1>Bem-vindo, <span id="userName"></span>! 🎮</h1>
+                            <p>Aqui você encontra novos companheiros para suas jornadas gamers</p>
+                        </div>
+                        <div class="welcome-stats">
+                            <div class="stat-card">
+                                <i class="fas fa-users"></i>
+                                <div class="stat-info">
+                                    <p class="stat-label">Jogadores Online</p>
+                                    <p class="stat-number" id="playersOnline">0</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-heart"></i>
+                                <div class="stat-info">
+                                    <p class="stat-label">Meus Matches</p>
+                                    <p class="stat-number" id="myMatches">0</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-gamepad"></i>
+                                <div class="stat-info">
+                                    <p class="stat-label">Jogos Salvos</p>
+                                    <p class="stat-number" id="savedGames">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Featured Games Section -->
+                <section class="section">
+                    <div class="section-header">
+                        <h2>🎯 Jogos em Destaque</h2>
+                        <a href="jogos_favoritos.html" class="see-all">Ver Todos →</a>
+                    </div>
+                    <div class="games-grid" id="featuredGames">
+                        <!-- Carregado dinamicamente -->
+                    </div>
+                </section>
+
+                <!-- Recent Players Section -->
+                <section class="section">
+                    <div class="section-header">
+                        <h2>👥 Jogadores Recentes</h2>
+                        <a href="jogadores.html" class="see-all">Ver Todos →</a>
+                    </div>
+                    <div class="players-grid" id="recentPlayers">
+                        <!-- Carregado dinamicamente -->
+                    </div>
+                </section>
+
+                <!-- Your Matches Section -->
+                <section class="section">
+                    <div class="section-header">
+                        <h2>💝 Seus Últimos Matches</h2>
+                        <a href="matches.html" class="see-all">Ver Todos →</a>
+                    </div>
+                    <div class="matches-grid" id="recentMatches">
+                        <!-- Carregado dinamicamente -->
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-header">
+            <h3>Notificações</h3>
+            <button class="close-btn" id="closeNotifications">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-list" id="notificationList">
+            <!-- Carregado dinamicamente -->
+        </div>
+    </div>
+
+    <script src="js/dados.js"></script>
+    <script src="js/script.js"></script>
+    
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
+<script>
+(function() {
+    const user = localStorage.getItem('usuarioLogado');
+    if (user) {
+        window.usuarioAtual = JSON.parse(user);
+    } else {
+        // Mock padrão para demonstração no Pages
+        window.usuarioAtual = {
+            id: 1,
+            nome: 'Visitante',
+            nickname: 'Visitante',
+            email: 'visitante@exemplo.com',
+            rank: 'Iniciante',
+            plataforma: 'PC',
+            foto: 'images/avatar-default.svg',
+            nivel: 1
+        };
+    }
+})();
+</script>

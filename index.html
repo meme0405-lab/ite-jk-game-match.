@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Game Match - Login</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+
+    <div class="login-container">
+        <div class="login-box">
+            <div class="logo-section">
+                <div class="logo">
+                    <i class="fas fa-gamepad"></i>
+                    <h1>JK Game Match</h1>
+                </div>
+                <p class="tagline">Encontre seus Companheiros de Jogo</p>
+            </div>
+
+            <div id="statusMessage" class="status-message" role="alert"></div>
+
+            <form id="loginForm" class="form-group" id="loginFormStatic">
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                </div>
+
+                <button type="submit" class="btn-neon btn-login">
+                    <span>ENTRAR</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+
+                <div class="remember-forgot">
+                    <label class="checkbox">
+                        <input type="checkbox" id="lembrar">
+                        <span>Lembrar de mim</span>
+                    </label>
+                    <a href="#" class="forgot-link">Esqueceu a senha?</a>
+                </div>
+            </form>
+
+            <div class="divider">
+                <span>OU</span>
+            </div>
+
+            <div class="social-login">
+                <button id="googleLogin" class="btn-social google" title="Login com Google">
+                    <i class="fab fa-google"></i>
+                </button>
+                <button id="discordLogin" class="btn-social discord" title="Login com Discord">
+                    <i class="fab fa-discord"></i>
+                </button>
+                <button id="twitchLogin" class="btn-social twitch" title="Login com Twitch">
+                    <i class="fab fa-twitch"></i>
+                </button>
+            </div>
+
+            <div class="signup-link">
+                <p>Não possui conta? <a href="cadastro.html" class="link-neon">CADASTRE-SE AGORA</a></p>
+            </div>
+        </div>
+
+        <div class="login-info">
+            <div class="info-card">
+                <i class="fas fa-users"></i>
+                <h3>Comunidade Ativa</h3>
+                <p>Conecte-se com jogadores de todo o país</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-handshake"></i>
+                <h3>Encontre Parceiros</h3>
+                <p>Sistema inteligente de match de interesses</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-trophy"></i>
+                <h3>Competição Saudável</h3>
+                <p>Rankings e eventos para todos os níveis</p>
+            </div>
+        </div>
+
+        <div class="login-games-section">
+            <div class="section-header">
+                <h2>Jogos Populares</h2>
+                <p>Veja alguns títulos que a comunidade mais busca.</p>
+            </div>
+            <div class="games-grid" id="homeGames"></div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/dados.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('homeGames');
+            if (!container || !window.jogosSimulados) return;
+
+            container.innerHTML = jogosSimulados.slice(0, 4).map(jogo => `
+                <div class="game-card">
+                    <div class="card-image" style="background-image: url('${jogo.imagem}');">
+                        ${!jogo.imagem ? jogo.icon : ''}
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">${jogo.nome}</h3>
+                        <p class="card-subtitle">${jogo.genero} • ${jogo.plataforma}</p>
+                        <p class="card-description">${jogo.descricao}</p>
+                    </div>
+                </div>
+            `).join('');
+        });
+    </script>
+    <script src="js/login_oauth.js"></script>
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const status = params.get('status');
+            const message = params.get('message');
+            const box = document.getElementById('statusMessage');
+            if (box && status && message) {
+                box.textContent = decodeURIComponent(message);
+                box.className = 'status-message show ' + (status === 'success' ? 'success' : 'error');
+            }
+        })();
+    </script>
+</body>
+</html>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('loginFormStatic');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            // Simular salvar usuário na sessão (localStorage)
+            localStorage.setItem('usuarioLogado', JSON.stringify({
+                id: 1,
+                nome: 'Jogador Teste',
+                nickname: 'JogadorTeste',
+                email: email,
+                rank: 'Intermediário',
+                plataforma: 'PC',
+                foto: 'images/avatar-default.svg',
+                nivel: 5
+            }));
+            window.location.href = 'dashboard.html';
+        });
+    }
+});
+</script>

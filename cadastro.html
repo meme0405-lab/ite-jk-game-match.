@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK Game Match - Cadastro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-animation"></div>
+
+    <div class="login-container">
+        <div class="login-box signup-box">
+            <div class="logo-section">
+                <div class="logo">
+                    <i class="fas fa-gamepad"></i>
+                    <h1>JK Game Match</h1>
+                </div>
+                <p class="tagline">Crie sua Conta de Gamer</p>
+            </div>
+
+            <div id="statusMessage" class="status-message" role="alert"></div>
+
+            <form id="cadastroForm" class="form-group" id="cadastroFormStatic" enctype="multipart/form-data">
+                <div class="form-row">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="nome" name="nome" placeholder="Nome Completo" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-gamepad"></i>
+                        <input type="text" id="nickname" name="nickname" placeholder="Nickname (seu apelido)" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <i class="fas fa-image"></i>
+                    <input type="file" id="fotoPerfil" name="foto_perfil" accept="image/*">
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="senha" name="senha" placeholder="Senha" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="confirmSenha" name="confirmSenha" placeholder="Confirmar Senha" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="input-group">
+                        <i class="fas fa-desktop"></i>
+                        <select id="plataforma" name="plataforma" required>
+                            <option value="">Sua Plataforma</option>
+                            <option value="PC">PC</option>
+                            <option value="PlayStation">PlayStation</option>
+                            <option value="Xbox">Xbox</option>
+                            <option value="Nintendo">Nintendo</option>
+                            <option value="Mobile">Mobile</option>
+                            <option value="Multi">Multi-plataforma</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-star"></i>
+                        <select id="rank" name="rank" required>
+                            <option value="">Seu Rank</option>
+                            <option value="Iniciante">Iniciante</option>
+                            <option value="Casual">Casual</option>
+                            <option value="Intermediario">Intermediário</option>
+                            <option value="Avancado">Avançado</option>
+                            <option value="Pro">Profissional</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <i class="fas fa-comment"></i>
+                    <textarea id="bio" name="bio" placeholder="Conte um pouco sobre você (opcional)" rows="3"></textarea>
+                </div>
+
+                <label class="checkbox-accept">
+                    <input type="checkbox" id="termos" name="termos" required>
+                    <span>Aceito os <a href="#" class="link-neon">Termos de Serviço</a> e a <a href="#" class="link-neon">Política de Privacidade</a></span>
+                </label>
+
+                <button type="submit" class="btn-neon btn-login">
+                    <span>CRIAR CONTA</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+
+            <div class="signup-link">
+                <p>Já tem conta? <a href="index.html" class="link-neon">FAÇA LOGIN</a></p>
+            </div>
+        </div>
+
+        <div class="login-info">
+            <div class="info-card">
+                <i class="fas fa-shield"></i>
+                <h3>Segurança Garantida</h3>
+                <p>Seus dados são protegidos com criptografia</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-zap"></i>
+                <h3>Rápido e Fácil</h3>
+                <p>Cadastro em menos de 2 minutos</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-rocket"></i>
+                <h3>Comece Agora</h3>
+                <p>Encontre seus primeiros matches imediatamente</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const status = params.get('status');
+            const message = params.get('message');
+            const box = document.getElementById('statusMessage');
+            if (box && status && message) {
+                box.textContent = decodeURIComponent(message);
+                box.className = 'status-message show ' + (status === 'success' ? 'success' : 'error');
+            }
+        })();
+    </script>
+</body>
+</html>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('cadastroFormStatic');
+    if (form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Cadastro simulado com sucesso! Você será redirecionado para o login.');
+            window.location.href = 'index.html';
+        });
+    }
+});
+</script>
